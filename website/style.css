@@ -1,5 +1,15 @@
-body {
-  background-color: white;
-  color: black;
-  font-family: Verdana;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    min-height: 100vh;
+    background: url(images/Main\ Background.png) no-repeat 0 / 100% 100%;
 }

@@ -3,25 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main BHG page</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Main page - BH Neocities</title>
   </head>
   <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-    }
-    body{
-        background-color: black;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-        height: 100vh;
-    }
     .main{
-        height: 70%;
-        width: 70%;
+        height: 70vh;
+        width: 70vw;
         background-color: white;
         border-radius: 10px;
         border: solid;
@@ -42,9 +30,7 @@
         width: 17vw;
         bottom: 0;
         box-shadow: #000000 0px 0px;
-        transition: 
-            box-shadow 1s, 
-            bottom 1s;
+        transition: bottom 1s, box-shadow 1s;
         position: relative;
         border-radius: 20px;
         background-color: #7f7f7f;
@@ -62,17 +48,21 @@
     }
     .card > h2{
         font-size: 2.5em;
-        margin-top: 0px;
-        transition: all 1s;
+        transition: top 1s;
     }
     .card > p{
         font-size: 1.5em;
-        display: none;
+        padding: 0 10px;
+        transition: color 1s;
+        color: rgba(0, 0, 0, 0);
+    }
+    .card:hover > p{
+        color: rgba(0, 0, 0, 1);
     }
   </style>
   <body>
     <div class="main">
-        <h1>BlankHole's Neocity Main Page</h1>
+        <h1>BlankHole's Neocity</h1>
         <div class="cardholder" id="cdhd">
             <div class="card" onclick="gotopage('aboutme')">
                 <h2>About me</h2>
@@ -96,20 +86,21 @@
         for (let i=0; i<3; i++) {
             cards = document.getElementById("cdhd").children;
             cards[i].h2 = cards[i].getElementsByTagName("h2")[0]
+                cards[i].h2.style.top = (cards[i].clientHeight/2 - cards[i].h2.clientHeight/2)+"px"
             cards[i].p = cards[i].getElementsByTagName("p")[0]
 
-            console.log(cards[i].h2)
+            console.log(cards[i].h2.clientHeight)
 
             cards[i].addEventListener("mouseover", () => {
                 cards[i].style.boxShadow = "#000000 "+ (7*(i-1)) +"px 20px";
 
-                cards[i].h2.style.alignSelf = "auto"
+                cards[i].h2.style.top = "10%"
             })
 
             cards[i].addEventListener("mouseout", () => {
                 cards[i].style.boxShadow = "#000000 0px 0px"
 
-                cards[i].h2.style.alignSelf = "center"
+                cards[i].h2.style.top = (cards[i].clientHeight/2 - cards[i].h2.clientHeight/2)+"px"
             })
         }
     </script>
