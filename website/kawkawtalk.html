@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        audios = {
+            "Ueueleuleuleue": [
+                new Audio("https://deltarune.wiki/images/Kawkaw_voiceclip_licking_1.wav"), 
+                new Audio("https://deltarune.wiki/images/Kawkaw_voiceclip_licking_2.wav"), 
+                new Audio("https://deltarune.wiki/images/Kawkaw_voiceclip_licking_3.wav")
+            ],
+            "Nyon": [
+                new Audio("audios/Kawkaw_nyon_1.wav"),
+                new Audio("audios/Kawkaw_nyon_2.wav")
+            ]
+        };
+        function sendMessage() {
+            const message = document.getElementById("message").value;
+            let historyObj = document.getElementById("history");
+
+            if (message == null || message == "") {
+                historyObj.innerHTML += `You said... nothing. Kawkaw can't answer that.<br><br>`;
+                return;
+            }
+
+            historyObj.innerHTML += `You said: "${message}"<br>Kawkaw's response: `;
+            document.getElementById("button").setAttribute("disabled", true);
+
+            setTimeout(() => {
+                if (Math.round(Math.random()) == 0) {
+                    historyObj.innerHTML += `Ueueleuleuleue!<br><br>`;
+                    audios.Ueueleuleuleue[Math.floor(Math.random() * 3)].play();
+                } else {
+                    historyObj.innerHTML += `Nyon!<br><br>`;
+                    audios.Nyon[Math.floor(Math.random() * 2)].play();
+                }
+
+                document.getElementById("button").removeAttribute("disabled");
+            }, Math.floor((Math.random()+1) * 1000));
+        }
+    </script>
+</head>
+<body>
+        <h1>Instructions:</h1>
+        <p>Type in the box, press the button to send the message!</p>
+        <input type="text" id="message"> 
+        <button type="submit" onclick="sendMessage()" id="button">Send</button>
+        <div id="history">
+
+        </div>
+</body>
+</html>
