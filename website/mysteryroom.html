@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <title>Roots</title>
+    <style>
+        body{
+            margin: 0;
+            box-sizing: border-box;
+            background-color: #000000;
+            min-height: 100vh;
+        }
+        main{
+            min-height: 100vh;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        p{
+            color: white;
+            position: absolute;
+            bottom: 150px;
+            font-size: 36px;
+        }
+    </style>
+</head>
+<body onclick="heyDontClickTwice()">
+    <main>
+        <img src="https://deltarune.wiki/images/Man_overworld_tree.gif" alt="A tree, there is a man behind it.">
+        <p>Click to begin interaction.</p>
+    </main>
+</body>
+<script>
+let music = new Audio("https://deltarune.wiki/images/Man_music.ogg");
+let started = false;
+music.loop = true;
+
+async function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+async function smoothTalking(text) {
+    let paragraph = document.querySelector("p")
+    for (let char in paragraph.innerHTML) {
+        paragraph.innerHTML = paragraph.innerHTML.slice(0, paragraph.innerHTML.length-1)
+        if (char == 0) {
+            await wait(500)
+        } else {
+            await wait(100)
+        }
+    }
+
+    for (let char in text) {
+        paragraph.innerHTML += text[char]
+        await wait(300)
+    }
+
+    await wait(1000);
+}
+
+async function quitYappingGaster() {
+    await smoothTalking("There seems to be a woman here.");
+    await smoothTalking("She seems happy you found the secret.");
+    await smoothTalking("After all, it was difficult to put it together.");
+    await smoothTalking("Please, alert everyone of your finding.");
+    await smoothTalking("You obtained: The egg.");
+    await smoothTalking("Goodbye, now.")
+    await wait(1000);
+    pageAssignment("index");
+}
+
+function heyDontClickTwice() {
+    music.play()
+    if (!started) {
+        quitYappingGaster();
+        started = true
+    }
+}
+</script>
+</html>

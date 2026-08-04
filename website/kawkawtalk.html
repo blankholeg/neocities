@@ -1,11 +1,33 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Kaw kaw</title>
+    <style>
+        body{
+            background: #000000 no-repeat 0 / 100% 100%;
+            min-height: 100vh;
+            display: block;
+        }
+        *{
+            color: #ffffff;
+        }
+        button, input{
+            color: #000000;
+        }
+        img{
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
     <script>
-        audios = {
+        let audios = {
             "Ueueleuleuleue": [
                 new Audio("https://deltarune.wiki/images/Kawkaw_voiceclip_licking_1.wav"), 
                 new Audio("https://deltarune.wiki/images/Kawkaw_voiceclip_licking_2.wav"), 
@@ -14,11 +36,19 @@
             "Nyon": [
                 new Audio("https://deltarune.wiki/images/Kawkaw_voiceclip_happy_1.wav"),
                 new Audio("https://deltarune.wiki/images/Kawkaw_voiceclip_happy_2.wav")
-            ]
+            ],
+            "Hurt": new Audio("https://deltarune.wiki/images/Kawkaw_voiceclip_hurt.wav")
         };
+        let kawkawSprites = {
+            "Happy": "https://deltarune.wiki/images/Kawkaw_battle_spared.gif",
+            "Hurt": "https://deltarune.wiki/images/Kawkaw_battle_hurt.png",
+            "Idle": "https://deltarune.wiki/images/Kawkaw_battle_idle.gif",
+            "Tongue": "https://deltarune.wiki/images/Kawkaw_battle_tongue_attack.gif"
+        }
         function sendMessage() {
             const message = document.getElementById("message").value;
             let historyObj = document.getElementById("history");
+            let imgObj = document.querySelector("img");
 
             if (message == null || message == "") {
                 historyObj.innerHTML += `You said... nothing. Kawkaw can't answer that.<br><br>`;
@@ -27,26 +57,44 @@
 
             historyObj.innerHTML += `You said: "${message}"<br>Kawkaw's response: `;
             document.getElementById("button").setAttribute("disabled", true);
-
+            
+            let meanWords = ["bitch", "fuck", "shit", "peter ruette", "ass", "asshole", "bastard", "bullshit", "piss"];
             setTimeout(() => {
-                if (Math.round(Math.random()) == 0) {
-                    historyObj.innerHTML += `Ueueleuleuleue!<br><br>`;
-                    audios.Ueueleuleuleue[Math.floor(Math.random() * 3)].play();
+                if (meanWords.some((word)=>{return message.toLowerCase().includes(word)})) {
+                    historyObj.innerHTML += `<span style="color: #ff0000">Rude...</span><br><br>`;
+                    imgObj.src = kawkawSprites.Hurt;
+                    audios.Hurt.play();
                 } else {
-                    historyObj.innerHTML += `Nyon!<br><br>`;
-                    audios.Nyon[Math.floor(Math.random() * 2)].play();
+                    if (randomInteger(0, 1) == 0) {
+                        historyObj.innerHTML += `Ueueleuleuleue!<br><br>`;
+                        imgObj.src = kawkawSprites.Tongue;
+                        audios.Ueueleuleuleue[randomInteger(0, 2)].play();
+                    } else {
+                        historyObj.innerHTML += `Nyon!<br><br>`;
+                        imgObj.src = kawkawSprites.Tongue;
+                        audios.Nyon[randomInteger(0, 1)].play();
+                    }
                 }
-
+                
+                setTimeout(() => {imgObj.src = kawkawSprites.Idle}, 1000)
                 document.getElementById("button").removeAttribute("disabled");
-            }, Math.floor((Math.random()+1) * 1000));
+            }, randomInteger(1000, 2000));
+        }
+        function happyHappyHappy() {
+            let imgObj = document.querySelector("img");
+            imgObj.src = kawkawSprites.Happy
+            setTimeout(() => {imgObj.src = kawkawSprites.Idle}, 1000)
         }
     </script>
 </head>
 <body>
         <h1>Instructions:</h1>
         <p>Type in the box, press the button to send the message!</p>
+        <p>Kawkaw will answer with either "eueuleuleuleu" or "nyon"!</p>
+        <p>Don't say swear words tho... Kawkaw doesn't like those...</p>
         <input type="text" id="message"> 
         <button type="submit" onclick="sendMessage()" id="button">Send</button>
+        <img src="https://deltarune.wiki/images/Kawkaw_battle_idle.gif" onclick="happyHappyHappy()">
         <div id="history">
 
         </div>

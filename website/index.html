@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
     <title>Main page - BH Neocities</title>
   </head>
   <style>
@@ -64,45 +65,47 @@
     <div class="main">
         <h1>BlankHole's Neocity</h1>
         <div class="cardholder" id="cdhd">
-            <div class="card" onclick="gotopage('aboutme')">
+            <div class="card" onclick="pageAssignment('aboutme')">
                 <h2>About me</h2>
                 <p>The absolute basic information about me like my nickname or what I like</p>
             </div>
-            <div class="card" onclick="gotopage('interests')">
+            <div class="card" onclick="pageAssignment('interests')">
                 <h2>Interests</h2>
                 <p>The things that I like doing, playing or watching when I'm not doing anything else</p>
             </div>
-            <div class="card" onclick="gotopage('links')">
+            <div class="card" onclick="pageAssignment('links')">
                 <h2>Other links</h2>
                 <p>Places where you can find me, alternatively some important links that I use every now and then</p>
             </div>
         </div>
     </div>
     <script>
-        function gotopage(pagename = "not_found") {
-            window.location.assign(pagename+".html")
-        }
-        
-        for (let i=0; i<3; i++) {
-            cards = document.getElementById("cdhd").children;
-            cards[i].h2 = cards[i].getElementsByTagName("h2")[0]
+        function startUp() {
+            for (let i=0; i<3; i++) {
+                let cards = document.getElementById("cdhd").children;
+                cards[i].h2 = cards[i].getElementsByTagName("h2")[0]
                 cards[i].h2.style.top = (cards[i].clientHeight/2 - cards[i].h2.clientHeight/2)+"px"
-            cards[i].p = cards[i].getElementsByTagName("p")[0]
+                cards[i].p = cards[i].getElementsByTagName("p")[0]
 
-            console.log(cards[i].h2.clientHeight)
+                cards[i].addEventListener("mouseover", () => {
+                    cards[i].style.boxShadow = "#000000 "+ (7*(i-1)) +"px 20px";
 
-            cards[i].addEventListener("mouseover", () => {
-                cards[i].style.boxShadow = "#000000 "+ (7*(i-1)) +"px 20px";
+                    cards[i].h2.style.top = "10%"
+                })
 
-                cards[i].h2.style.top = "10%"
-            })
+                cards[i].addEventListener("mouseout", () => {
+                    cards[i].style.boxShadow = "#000000 0px 0px"
 
-            cards[i].addEventListener("mouseout", () => {
-                cards[i].style.boxShadow = "#000000 0px 0px"
-
-                cards[i].h2.style.top = (cards[i].clientHeight/2 - cards[i].h2.clientHeight/2)+"px"
-            })
+                    cards[i].h2.style.top = (cards[i].clientHeight/2 - cards[i].h2.clientHeight/2)+"px"
+                })
+            }
         }
+
+        startUp();
+
+        /*if (Math.floor(Math.random() * (50 - 0) ) + 0 == 0) {
+            pageAssignment("mysteryroom")
+        }*/
     </script>
   </body>
 </html>
