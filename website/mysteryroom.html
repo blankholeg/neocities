@@ -61,7 +61,7 @@ async function smoothTalking(text) {
     await wait(1000);
 }
 
-async function quitYappingGaster() {
+async function quitYappingBlank() {
     await smoothTalking("There seems to be a woman here.");
     await smoothTalking("She seems happy you found the secret.");
     await smoothTalking("After all, it was difficult to put it together.");
@@ -75,7 +75,7 @@ async function quitYappingGaster() {
 function heyDontClickTwice() {
     music.play()
     if (!started) {
-        quitYappingGaster();
+        quitYappingBlank();
         started = true
     }
 }
