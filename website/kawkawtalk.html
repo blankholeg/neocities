@@ -58,12 +58,22 @@
             historyObj.innerHTML += `You said: "${message}"<br>Kawkaw's response: `;
             document.getElementById("button").setAttribute("disabled", true);
             
-            let meanWords = ["bitch", "fuck", "shit", "peter ruette", "ass", "asshole", "bastard", "bullshit", "piss"];
+            let meanWords = ["bitch", "fuck", "shit", "peter ruette", "ass", "asshole", "bastard", "bullshit", "piss", "henlo", "chako", "hoe", "slur", "arse"];
             setTimeout(() => {
                 if (meanWords.some((word)=>{return message.toLowerCase().includes(word)})) {
                     historyObj.innerHTML += `<span style="color: #ff0000">Rude...</span><br><br>`;
                     imgObj.src = kawkawSprites.Hurt;
                     audios.Hurt.play();
+                } else if (message.toLowerCase().includes("blank")) {
+                    historyObj.innerHTML += `Ugh...<br><br>`
+                    imgObj.src = kawkawSprites.Hurt
+                    audios.Hurt.play()
+                } else if (message.toLowerCase().includes("gaster")) {
+                    pageAssignment("index")
+                } else if (message.toLowerCase().includes("ollie")) {
+                    historyObj.innerHTML += `They're so mean.../j/j/j/j<br><br>`
+                    imgObj.src = kawkawSprites.Tongue;
+                    audios.Ueueleuleuleue[randomInteger(0, 2)].play();
                 } else {
                     if (randomInteger(0, 1) == 0) {
                         historyObj.innerHTML += `Ueueleuleuleue!<br><br>`;
