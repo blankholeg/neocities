@@ -27,7 +27,7 @@
         }
     </style>
 </head>
-<body onclick="heyDontClickTwice()">
+<body onclick="clicked()">
     <main>
         <img src="https://deltarune.wiki/images/Man_overworld_tree.gif" alt="A tree, there is a man behind it.">
         <p>Click to begin interaction.</p>
@@ -36,6 +36,10 @@
 <script>
 let music = new Audio("https://deltarune.wiki/images/Man_music.ogg");
 let started = false;
+let typingSpeed = 300;
+let deletingSpeed = 100
+let userClicked = false;
+let currentMessageEnded = false;
 music.loop = true;
 
 async function wait(ms) {
@@ -44,40 +48,64 @@ async function wait(ms) {
 
 async function smoothTalking(text) {
     let paragraph = document.querySelector("p")
+    typingSpeed = 300;
+    deletingSpeed = 100;
+
     for (let char in paragraph.innerHTML) {
         paragraph.innerHTML = paragraph.innerHTML.slice(0, paragraph.innerHTML.length-1)
         if (char == 0) {
-            await wait(500)
+            await wait(deletingSpeed*5)
         } else {
-            await wait(100)
+            await wait(deletingSpeed)
         }
     }
 
     for (let char in text) {
         paragraph.innerHTML += text[char]
-        await wait(300)
+        await wait(typingSpeed)
     }
-
-    await wait(1000);
+    currentMessageEnded = true;
 }
 
-async function quitYappingBlank() {
-    await smoothTalking("There seems to be a woman here.");
-    await smoothTalking("She seems happy you found the secret.");
-    await smoothTalking("After all, it was difficult to put it together.");
-    await smoothTalking("Please, alert everyone of your finding.");
-    await smoothTalking("You obtained: The egg.");
-    await smoothTalking("Goodbye, now.")
-    await wait(1000);
+async function waitForTyping() {
+    while (true) {
+        await wait(100);
+        if (userClicked) {
+            break
+        }
+    }
+}
+
+async function quitYapping() {
+    dialogue = [
+        "There seems to be a woman here.", 
+        "She seems happy you found the secret.",
+        "Feel free to alert everyone of your finding.",
+        "You obtained: The Egg",
+        "Enjoy the rest of the website."
+    ]
+    for (text of dialogue) {
+        await smoothTalking(text);
+        await waitForTyping();
+        userClicked = false, currentMessageEnded = false;
+    }
+    await wait(3000);
     pageAssignment("index");
 }
 
-function heyDontClickTwice() {
+function clicked() {
     music.play()
-    if (!started) {
-        quitYappingBlank();
-        started = true
-    }
+    if (started) {
+        if (currentMessageEnded) {
+            userClicked = true;
+        } else {
+            typingSpeed = 10;
+            deletingSpeed = 4;
+        }
+        return
+    } 
+    quitYapping();
+    started = true
 }
 </script>
 </html>
