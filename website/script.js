@@ -1,5 +1,13 @@
 function pageAssignment(pagename = "not_found") {
-    window.location.assign(pagename+".html")
+    if (pagename == "aboutme" && randomInteger(1, 50) == 1) {
+        window.location.assign("mysteryroom.html");
+        return;
+    } 
+    window.location.assign(pagename+".html");
+}
+
+function goBackButton() {
+    document.querySelector("body").innerHTML += `<button class="backButton" onclick="pageAssignment('index')">Go back</button>`
 }
 
 function randomInteger(min, max) {
