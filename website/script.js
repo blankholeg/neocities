@@ -7,7 +7,7 @@ function pageAssignment(pagename = "not_found") {
 }
 
 function goBackButton() {
-    document.querySelector("body").innerHTML += `<button class="backButton" onclick="pageAssignment('index')">Go back</button>`
+    document.querySelector("body").innerHTML += `<button class="backButton" onclick="pageAssignment('index')">Back to Cards</button>`
 }
 
 function randomInteger(min, max) {

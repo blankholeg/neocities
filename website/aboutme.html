@@ -5,30 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-    <title>Meeee~ - Mira Neocities</title>
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <title>The Charapedia - Mira Neocities</title>
     <style>
         main{
             min-height: 100vh;
-            width: 60%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
-        main > *{
-            position: relative;
-        }
-        img.pfp{
-            height: 250px;
-            width: 250px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+        img.selected{
+            height: 200px;
+            width: 200px;
             border-radius: 100%;
             border: solid 5px;
             border-color: white;
         }
+        img.option{
+            height: 50px;
+            width: 50px;
+        }
+        .wheel{
+            height: fit-content;
+            width: fit-content;
+            display: flex;
+            justify-content: center;
+        }
+        .option{
+            align-self: center;
+            position: absolute;
+        }
     </style>
 </head>
 <body>
-    <main>  
-        <img src="https://yt3.ggpht.com/hSjlBngfFtw5Kv9wpjRIkfLnSP5rkl6DBlGHF9X5722gFpg9ntv2djiIYrm10BRblsgr0ADAl7Y=s108-c-k-c0x00ffffff-no-rj" alt="Shrimp Miku with an Aroace flag around her in a circular image" class="pfp">
+    <main> 
+        <div class="wheel">
+            <img src="https://yt3.ggpht.com/hSjlBngfFtw5Kv9wpjRIkfLnSP5rkl6DBlGHF9X5722gFpg9ntv2djiIYrm10BRblsgr0ADAl7Y=s108-c-k-c0x00ffffff-no-rj" alt="A blackhole on the game PeoplePlayground" class="selected">
+            <img src="images/placeholder.png" class="option">
+        </div>
     </main>
   <script>goBackButton()</script>
 </body>
