@@ -64,8 +64,8 @@
   <body>
     <div class="main">
         <h1>Mira Stella's Neocity</h1>
-        <div class="cardholder" id="cdhd">
-            <div class="card" onclick="pageAssignment('aboutme')">
+        <div class="cardholder">
+            <div class="card" onclick="pageAssignment('charapedia')">
                 <h2>Charapedia</h2>
                 <p>The place that holds information about me or my characters </p>
             </div>
@@ -86,28 +86,25 @@
     How about you go check "https://mirastella.neocities.org/kawkawtalking".
     Maybe you could find something cool there.-->
     <script>
-        function startUp() {
-            let cards = document.getElementById("cdhd").children;
-            for (let i in cards) {
-                cards[i].p = cards[i].getElementsByTagName("p")[0];
-                cards[i].h2 = cards[i].getElementsByTagName("h2")[0];
+        let cardholder = document.querySelector(".cardholder")
+        let cards = document.querySelector(".cardholder").children;
+        for (let i in cards) {
+            if (cards[i].className != "card") continue;
+            cards[i].p = cards[i].getElementsByTagName("p")[0];
+            cards[i].h2 = cards[i].getElementsByTagName("h2")[0];
+
+            cards[i].h2.style.top = (cards[i].clientHeight/2 - cards[i].h2.clientHeight/2)+"px";
+
+            cards[i].addEventListener("mouseover", () => {
+                cards[i].style.boxShadow = "#000000 "+ (7*(i-1)) +"px 20px";
+                cards[i].h2.style.top = "10%";
+            })
+
+            cards[i].addEventListener("mouseout", () => {
+                cards[i].style.boxShadow = "#000000 0px 0px";
                 cards[i].h2.style.top = (cards[i].clientHeight/2 - cards[i].h2.clientHeight/2)+"px";
-
-                cards[i].addEventListener("mouseover", () => {
-                    cards[i].style.boxShadow = "#000000 "+ (7*(i-1)) +"px 20px";
-
-                    cards[i].h2.style.top = "10%";
-                })
-
-                cards[i].addEventListener("mouseout", () => {
-                    cards[i].style.boxShadow = "#000000 0px 0px";
-
-                    cards[i].h2.style.top = (cards[i].clientHeight/2 - cards[i].h2.clientHeight/2)+"px";
-                })
-            }
+            })
         }
-
-        startUp();
     </script>
   </body>
 </html>

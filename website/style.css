@@ -22,3 +22,7 @@ body{
     height: 40px;
     border-radius: 10px;
 }
+
+.backButton:hover{
+    cursor: pointer;
+}

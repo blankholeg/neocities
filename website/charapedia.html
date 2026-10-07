@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <title>The Charapedia - Mira Neocities</title>
+    </head>
+    <style>
+        .main{
+            min-height: 100vh;
+            width: 100%;
+        }
+        img{
+            position: absolute;
+            width: 300px;
+            transition: all 1s;
+        }
+        img.middle{
+            right: calc(50% - 150px);
+            bottom: calc(50% - 150px);
+        }
+        img.middle:hover{
+            right: calc(50% - 175px);
+            bottom: calc(50% - 175px);
+        }
+        img:hover{
+            width: 350px;
+            cursor: pointer;
+        }
+    </style>
+    <body>
+        <div class="main"> 
+            <img src="images/Land Of The Sun.png" style="bottom: 0">
+            <img src="images/placeholder.png" style="right: 0">
+            <img src="images/placeholder.png" class="middle" onclick="popUp()">
+        </div>
+    </body>
+    <script>
+        function startup() {
+            let shadow = document.querySelector(".shadow")
+            let images = document.getElementsByTagName("img")
+            for (let image of images) {
+                image.addEventListener("mouseover", ()=>{
+                    focus(image)
+                })
+
+                image.addEventListener("mouseout", ()=>{
+                    unfocus(image)
+                })
+            }
+        }
+        window.onload = startup
+
+        goBackButton()
+    </script>
+</html>
