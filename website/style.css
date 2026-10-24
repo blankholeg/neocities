@@ -6,7 +6,7 @@
     font-family: Arial, sans-serif;
 }
 
-body{
+body{ 
     align-items: center;
     justify-content: center;
     display: flex;
@@ -25,4 +25,51 @@ body{
 
 .backButton:hover{
     cursor: pointer;
+}
+
+/*     FOLDERS     */
+
+#backgroundShadow{
+    min-height: 100vh;
+    min-width: 100vw;
+    position: absolute;
+    background-color: #00000060
+}
+
+#folder{
+    height: 800px;
+    width: 900px;
+    position: absolute;
+    bottom: calc(50% - 400px);
+    left: calc(50% - 450px);   
+    background-color: #003060;
+}
+/* section buttons */
+#folder > button{
+    color: #8f8e8e;
+    height: 120px;
+    width: 30px;
+    position: absolute;
+    left: -30px;
+    writing-mode: sideways-lr;
+    clip-path: polygon(0% 10%, 100% 0%, 100% 100%, 0% 90%);
+}
+
+#folder > button.off{
+    background-color: #002040;
+}
+#folder > button.off:hover{
+    background-color: #002850;
+}
+
+#folder > button.on{
+    background-color: #003060;
+}
+
+/* content */
+
+#folder > div{
+    min-width: 100%;
+    min-height: 100%;
+    overflow: auto;
 }
