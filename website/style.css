@@ -43,7 +43,9 @@ body{
     bottom: calc(50% - 400px);
     left: calc(50% - 450px);   
     background-color: #003060;
+    color: #e6e6e6;;
 }
+
 /* section buttons */
 #folder > button{
     color: #8f8e8e;
@@ -68,8 +70,51 @@ body{
 
 /* content */
 
-#folder > div{
-    min-width: 100%;
-    min-height: 100%;
+#folder > .content{
+    width: 100%;
+    height: 100%;
+    padding: 20px 20px;
     overflow: auto;
+}
+
+.content > .infobox {
+    max-width: 30%;
+    float: right;
+    border-style: solid;
+    border-color: #001020;
+    color: #e6e6e6;
+    border-spacing: 0;
+}
+.infobox img{
+    max-width: 100%;
+}
+
+.infobox tr{
+    display: flex;
+    padding: 10px 20px;
+    margin: 0 0 10px 0;
+    border-top-style: solid;
+}
+
+.infobox th{
+    flex-grow: 1;
+    flex-basis: 50%;
+    vertical-align: baseline;
+    text-align: left;
+}
+.infobox td{
+    flex-grow: 2;
+    flex-basis: 50%;
+}
+.infobox tr.image{
+    padding: 0 0;
+    border-top-style: none;
+    border-bottom-style: none;
+    margin: 0;
+}
+
+#folder > .content > h1{
+    border-bottom-style: solid;
+    margin-bottom: 20px;
+    display: block;
 }

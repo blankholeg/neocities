@@ -1,4 +1,3 @@
-// This Is just An Easy Way To Change To The Pages. Nothing Special I Just Like The Shorter Name.
 function pageAssignment(pagename = "not_found") {
     if ((pagename == "charapedia" || pagename == "index") && randomInteger(1, 50) == 1) {
         window.location.assign("secrets/mysteryroom.html");
@@ -7,7 +6,6 @@ function pageAssignment(pagename = "not_found") {
     window.location.assign(pagename+".html");
 }
 
-// Button To Go Back To The Cards Thingie 
 function goBackButton() {
     let button = document.createElement("button")
     button.className = "backButton"
@@ -22,7 +20,7 @@ function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-// This Makes The Entire Screen Darker Except For The Given HTML Element (Parameter 1), The Second Parameter Is In Case The zIndex Is Already Used Somewhere Else On The Page
+
 function focus(item, zIndex = 1) {
     item.style.zIndex = zIndex+1
 
@@ -46,15 +44,18 @@ function unfocus(item = null, originalZIndex = null) {
     item.style.zIndex = originalZIndex
 }
 
-// This Is For Character Showing On Charapedia Pages
-function characterFolder(charactername) {
-    let body = document.querySelector("body")
 
-    // Background of the folder
+function characterFolder(character) {
+    let pageBody = document.querySelector("body")
     let mainBody = document.createElement("div")
-    mainBody.id = "folder"
+    let content = document.createElement("div")
 
-    // Section Buttons
+    mainBody.id = "folder"
+    content.className = "content"
+    pageBody.appendChild(mainBody)
+    mainBody.appendChild(content)
+
+    // Content Changing Buttons
     let buttonTexts = ["Information", "Gallery", "Relations"]
     let currentActiveButton = null;
     for (let i = 0; i<=2; i++) {
@@ -64,31 +65,75 @@ function characterFolder(charactername) {
         mainBody.appendChild(button)
         button.className = "off"
         if (i == 0) {
-            button.setAttribute("disabled", true)
-            button.className = "on"
+            activateThisButton(button)
 
-            currentActiveButton = button
+            setSectionInformation()
         }
     }
 
     let buttons = mainBody.getElementsByTagName("button")
     for (let button of buttons) {
         button.addEventListener("click", () => {
-            currentActiveButton.removeAttribute("disabled")
-            currentActiveButton.className = "off"
+            activateThisButton(button)
 
-            button.setAttribute("disabled", true)
-            button.className = "on"
-            currentActiveButton = button
+            content.innerHTML = ""
+            switch (button.innerText) {
+                case "Information":
+                    setSectionInformation()
+                    break
+            }
         })
     }
+    function setSectionInformation() {
+        let header = document.createElement("h1")
+        content.appendChild(header)
+        header.innerText = character.Name
 
+        let table = document.createElement("table")
+        table.className = "infobox"
+        content.appendChild(table)
+
+        let imageheader = document.createElement("tr")
+        imageheader.className = "image"
+        table.appendChild(imageheader)
+        let th1 = document.createElement("th")
+        th1.setAttribute("colspan", 2)
+        imageheader.appendChild(th1)
+        let img = document.createElement("img")
+        img.src = character.imgsrc
+        th1.appendChild(img)
+
+        infoboxRows = ["Name", "Alias", "Age", "Gender", "Species", "Residence"]
+        for (i in infoboxRows) {
+            let tableRow = document.createElement("tr")
+            table.appendChild(tableRow)
+            let infoType = document.createElement("th")
+            tableRow.appendChild(infoType)
+            infoType.innerHTML = infoboxRows[i]
+            let info = document.createElement("td")
+            tableRow.appendChild(info)
+            info.innerHTML = character[infoboxRows[i]]
+        }
+
+        let introductionParagraph  = document.createElement("p")
+        content.appendChild(introductionParagraph)
+        introductionParagraph.innerText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni at optio, cupiditate libero quis minima distinctio id, quidem, esse fugit officiis error eius autem ex delectus quas nostrum voluptas eveniet."
+
+    }
+    function activateThisButton(button) {
+        if (currentActiveButton) {
+            currentActiveButton.removeAttribute("disabled")
+            currentActiveButton.className = "off"
+        }  
+
+        button.setAttribute("disabled", true)
+        button.className = "on"
+        currentActiveButton = button
+    }
     // Content
 
-    let content = document.createElement("div")
-    mainBody.appendChild(content)
 
     
-    body.appendChild(mainBody)
+
     focus(mainBody, 2)
 }

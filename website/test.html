@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #003060;
+        }
+        table{
+            border-style: solid;
+            border-color: #001020;
+            color: #e6e6e6;
+            border-spacing: 0;
+        }  
+        ul{
+            margin: 0;
+        }
+        tr{
+            display: flex;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-top-style: solid;
+        }
+        th{
+            flex-grow: 1;
+            flex-basis: 50%;
+            vertical-align: baseline;
+            text-align: left;
+        }
+        td{
+            flex-grow: 2;
+            flex-basis: 50%;
+        }
+        tr.image{
+            padding: 0 0;
+            border-top-style: none;
+            border-bottom-style: none;
+            margin: 0;
+        }
+        img{
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr class="image">
+            <th colspan="2"><img src="images/placeholder.png"></th>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>Mira Stella</td>
+        </tr>
+        <tr>
+            <th>Aliases</th>
+            <td>
+                    Mira<br>
+                    Blank<br>
+                    Sunrise
+            </td>
+        </tr>
+        <tr>
+            <th>Age</th>
+            <td>18</td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            <td>Female (She/Any)</td>
+        </tr>
+        <tr>
+            <th>Species</th>
+            <td>Human</td>
+        </tr>
+        <tr>
+            <th>Residence</th>
+            <td>Earth, Brazil</td>
+        </tr>
+    </table>
+</body>
+</html>

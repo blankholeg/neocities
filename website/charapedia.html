@@ -12,20 +12,20 @@
             min-height: 100vh;
             width: 100%;
         }
-        img{
+        .main > img{
             position: absolute;
             width: 300px;
             transition: all 1s;
         }
-        img.middle{
+        .main > img.middle{
             right: calc(50% - 150px);
             bottom: calc(50% - 150px);
         }
-        img.middle:hover{
+        .main > img.middle:hover{
             right: calc(50% - 175px);
             bottom: calc(50% - 175px);
         }
-        img:hover{
+        .main > img:hover{
             width: 350px;
             cursor: pointer;
         }
@@ -34,7 +34,15 @@
         <div class="main"> 
             <img src="images/Land Of The Sun.png" style="bottom: 0">
             <img src="images/placeholder.png" style="right: 0">
-            <img src="images/placeholder.png" class="middle" onclick="characterFolder()">
+            <img src="images/placeholder.png" class="middle" onclick='characterFolder({
+                "Name": "Mira Stella",
+                "Alias": "Mira<br>Blankhole<br>Sunrise",
+                "Age": "18",
+                "Gender": "Female (She/Any)",
+                "Species": "Human",
+                "Residence": "Earth, Brazil",
+                "imgsrc": "images/placeholder.png"
+            })'>
         </div>
     </body>
     <script>
